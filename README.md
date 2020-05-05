@@ -6,4 +6,10 @@ pandemia do COVID-19. Dados obtidas pelo projeto covid19-brazil-api
 usa como base os dados do CSSEGIS, Ministério da Saúde Coronavírus Brasil
 
 Site do expo: https://expo.io/@wilsoncx/covid19App
+
+
+# License 📝
+
+
+This project is licensed under the <a href="https://opensource.org/licenses/MIT">MIT License</a> - see the LICENSE file for details.
      
