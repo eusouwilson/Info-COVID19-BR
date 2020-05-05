@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "covid19App",
-    "slug": "covid19App",
+    "name": "Info-COVID19-BR",
+    "slug": "Info-COVID19-BR",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
-    "version": "1.0.0",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -23,6 +23,12 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "android": {
+      "package": "br.com.webdeve.infocovid19br",
+      "versionCode": 2
+    },
+    "description": "Aplicativo idealizado para disseminação de informações sobre a pandemia do COVID-19. Dados obtidos pelo projeto covid19-brazil-api (https://github.com/devarthurribeiro/covid19-brazil-api) o mesmo usa como base os dados do CSSEGIS, Ministério da Saúde Coronavírus Brasil. utilizarmos também o projeto API Dataset covid19  no Brasil.IO(https://github.com/turicas/covid19-br) que utiliza como Fonte: Secretarias de Saúde das Unidades Federativas, dados tratados por Álvaro Justen e colaboradores/Brasil.IO. \n\n     ",
+    "githubUrl": "https://github.com/eusouwilson/Info-COVID19-BR"
   }
 }

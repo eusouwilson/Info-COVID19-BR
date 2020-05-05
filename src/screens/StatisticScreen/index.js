@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SwitchButtom from '../../components/SwitchButtom';
 import CovidData from '../../components/CovidData';
 
-import { fetchData, fetchDataDetails } from '../../services/api';
+import { fetchData, fetchDataStates, fetchDataState } from '../../services/api';
 
 import {
   Container,
@@ -18,23 +18,56 @@ import {
 
 const StatisticScreen = () => {
   const [dataCoutry, setdataCoutry] = useState([]);
-  const [dataDetails, setdataDetails] = useState([]);
+  const [loading, setloading] = useState(false);
+  const [dataState, setdataState] = useState(null);
 
-  useEffect(() => {
+  /*   useEffect(() => {
+    handleFetchApiState();
+
     const fetchApi = async () => {
       setdataCoutry(await fetchData('brazil'));
       setdataDetails(await fetchDataDetails(null));
     };
     fetchApi();
+    console.log(dataState);
+  }, []); */
+  useEffect(() => {
+    setloading(true);
+    handleFetchApi('brazil');
+    handleFetchApiState();
   }, []);
 
-  const handleFetchApi = async (country, detail, uf) => {
+  /*   const handleFetchApi = async (country, detail, uf) => {
     setdataCoutry(await fetchData(country, uf));
     setdataDetails(await fetchDataDetails(detail));
   };
+ */
+  const handleFetchApi = async (country) => {
+    setdataCoutry(await fetchData(country));
+    setloading(false);
+  };
+
+  const handleFetchApiStateDetails = async (uf) => {
+    setloading(true);
+    const dataStateFiltered = await fetchDataState(uf);
+    setdataCoutry(dataStateFiltered.results[0]);
+
+    console.log(dataCoutry);
+    setloading(false);
+
+    /*     const dataStateFiltered = await fetchDataState(uf);
+    setdataCoutry(await fetchDataState(uf));
+ */
+  };
+
+  const handleFetchApiState = async () => {
+    setdataState(await fetchDataStates(null));
+    setloading(false);
+  };
+
   return (
     <Container>
-      {dataCoutry === [] ? (
+      {!dataCoutry ? (
         <Loading />
       ) : (
         <>
@@ -50,18 +83,20 @@ const StatisticScreen = () => {
             <BodyData>
               <CovidData
                 color="#F6B258"
-                title="Ativos"
+                title={dataCoutry.confirmed ? 'Ativos' : 'Novos Confirmados'}
                 value={
                   dataCoutry.confirmed
                     ? dataCoutry.cases
-                    : dataCoutry.cases - dataCoutry.deaths - dataCoutry.refuses
+                    : dataCoutry.new_confirmed
                 }
               />
               <CovidData
                 color="#EE5657"
                 title="Confirmados"
                 value={
-                  dataCoutry.confirmed ? dataCoutry.confirmed : dataCoutry.cases
+                  dataCoutry.confirmed
+                    ? dataCoutry.confirmed
+                    : dataCoutry.last_available_confirmed
                 }
               />
             </BodyData>
@@ -69,38 +104,38 @@ const StatisticScreen = () => {
               <CovidData
                 color="#9057F7"
                 title="Obitos"
-                value={dataCoutry.deaths}
+                value={
+                  dataCoutry.deaths
+                    ? dataCoutry.deaths
+                    : dataCoutry.last_available_deaths
+                }
               />
               <CovidData
                 color="#64D97C"
-                title={'Curados'}
+                title={dataCoutry.recovered ? 'Curados' : 'Letalidade'}
                 value={
                   dataCoutry.recovered
                     ? dataCoutry.recovered
-                    : dataCoutry.refuses
+                    : dataCoutry.last_available_death_rate * 100
                 }
               />
             </BodyData>
           </Header>
           <Body>
-            {dataDetails === [] ? (
+            {!dataState ? (
               <Loading />
             ) : (
               <FlatContainer
-                data={dataDetails}
-                keyExtractor={(item) =>
-                  String(item.country ? item.country : item.state)
-                }
+                data={dataState.results}
+                keyExtractor={(item) => String(item.city_ibge_code)}
                 renderItem={({ item }) => (
                   <Buttom
-                    onPress={() =>
-                      handleFetchApi(item.country, item.country, item.uf)
-                    }
+                    onPress={() => handleFetchApiStateDetails(item.state)}
                   >
                     <CovidData
                       color="#6C65AC"
-                      title={item.country ? item.country : item.state}
-                      value={item.cases}
+                      title={item.state}
+                      value={item.confirmed}
                     />
                   </Buttom>
                 )}
