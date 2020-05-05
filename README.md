@@ -11,5 +11,5 @@ Site do expo: https://expo.io/@wilsoncx/covid19App
 # License 📝
 
 
-This project is licensed under the <a href="https://opensource.org/licenses/MIT">MIT License</a> - see the LICENSE file for details.
+This project is licensed under the <a href="https://opensource.org/licenses/MIT">MIT License</a> - see the <a href="https://github.com/eusouwilson/Info-COVID19-BR/blob/master/LICENSE">LICENSE</a> file for details.
      
