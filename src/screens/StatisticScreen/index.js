@@ -116,7 +116,8 @@ const StatisticScreen = () => {
                 value={
                   dataCoutry.recovered
                     ? dataCoutry.recovered
-                    : dataCoutry.last_available_death_rate * 100
+                    : (dataCoutry.last_available_death_rate * 100).toFixed(2) +
+                      '%'
                 }
               />
             </BodyData>
