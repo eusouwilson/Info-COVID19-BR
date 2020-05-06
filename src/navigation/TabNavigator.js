@@ -9,6 +9,10 @@ import HomeScreen from '../screens/HomeScreen';
 import NewsScreen from '../screens/NewsScreen';
 import InfoScreen from '../screens/InfoScreen';
 import StatisticScreen from '../screens/StatisticScreen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 const Tab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'HomeScreen';
@@ -22,7 +26,7 @@ const TabNavigator = () => (
       activeTintColor: colors.primaryColor,
       inactiveTintColor: colors.secondaryColor,
       labelStyle: { fontSize: 12 },
-      style: { height: 100 },
+      style: { height: hp('11%') },
     }}
   >
     <Tab.Screen
@@ -35,7 +39,7 @@ const TabNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="Statistic"
+      name="Statisticas"
       component={StatisticScreen}
       options={{
         tabBarIcon: ({ focused }) => (
@@ -44,7 +48,7 @@ const TabNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="News"
+      name="Notícias"
       component={NewsScreen}
       options={{
         tabBarIcon: ({ focused }) => (

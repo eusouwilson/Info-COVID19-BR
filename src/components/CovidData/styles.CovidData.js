@@ -1,8 +1,12 @@
 import styled from 'styled-components/native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const Container = styled.View`
-  width: 150px;
-  height: 110px;
+  width: ${wp('40%')}px;
+  height: ${hp('17%')}px;
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
@@ -11,13 +15,13 @@ export const Container = styled.View`
 `;
 
 export const DataTitle = styled.Text`
-  font-size: 18px;
+  font-size: ${hp('2.5%')}px;
   color: #fff;
-  font-weight: bold;
+  font-weight: 600;
 `;
 
 export const DataValue = styled.Text`
-  font-size: 22px;
+  font-size: ${hp('2.8%')}px;
   color: #fff;
   font-weight: bold;
 `;

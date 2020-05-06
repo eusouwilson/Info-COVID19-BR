@@ -18,51 +18,24 @@ import {
 
 const StatisticScreen = () => {
   const [dataCoutry, setdataCoutry] = useState([]);
-  const [loading, setloading] = useState(false);
   const [dataState, setdataState] = useState(null);
 
-  /*   useEffect(() => {
-    handleFetchApiState();
-
-    const fetchApi = async () => {
-      setdataCoutry(await fetchData('brazil'));
-      setdataDetails(await fetchDataDetails(null));
-    };
-    fetchApi();
-    console.log(dataState);
-  }, []); */
   useEffect(() => {
-    setloading(true);
     handleFetchApi('brazil');
     handleFetchApiState();
   }, []);
 
-  /*   const handleFetchApi = async (country, detail, uf) => {
-    setdataCoutry(await fetchData(country, uf));
-    setdataDetails(await fetchDataDetails(detail));
-  };
- */
   const handleFetchApi = async (country) => {
     setdataCoutry(await fetchData(country));
-    setloading(false);
   };
 
   const handleFetchApiStateDetails = async (uf) => {
-    setloading(true);
     const dataStateFiltered = await fetchDataState(uf);
     setdataCoutry(dataStateFiltered.results[0]);
-
-    console.log(dataCoutry);
-    setloading(false);
-
-    /*     const dataStateFiltered = await fetchDataState(uf);
-    setdataCoutry(await fetchDataState(uf));
- */
   };
 
   const handleFetchApiState = async () => {
-    setdataState(await fetchDataStates(null));
-    setloading(false);
+    setdataState(await fetchDataStates());
   };
 
   return (
@@ -73,7 +46,7 @@ const StatisticScreen = () => {
         <>
           <Header>
             <HeaderTitleContainer>
-              <HeaderTitle>Estatistica Covid-19</HeaderTitle>
+              <HeaderTitle>Estatística Covid-19</HeaderTitle>
             </HeaderTitleContainer>
             <SwitchButtom
               titleoff={dataCoutry.state ? dataCoutry.state : 'Geral'}

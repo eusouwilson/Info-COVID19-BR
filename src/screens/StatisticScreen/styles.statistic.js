@@ -1,5 +1,9 @@
 import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const Container = styled.View`
   flex: 1;
@@ -15,11 +19,11 @@ export const Header = styled.View`
 `;
 
 export const HeaderTitleContainer = styled.View`
-  margin-top: 65px;
-  margin-bottom: 30px;
+  margin-top: ${hp('7%')}px;
+  margin-bottom: ${hp('3%')}px;
 `;
 export const HeaderTitle = styled.Text`
-  font-size: 22px;
+  font-size: ${hp('2.5%')}px;
   color: #fff;
   font-weight: bold;
 `;
