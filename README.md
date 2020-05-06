@@ -12,6 +12,11 @@ https://drive.google.com/open?id=1RcKC5xHdqYVSOQb_D7LtFNtBPalvTB8c
 
 
 # screenshots
+
+
+<img src="https://github.com/eusouwilson/Info-COVID19-BR/blob/master/screenshots/screenshot.gif" alt="Home" height="800" width="370">
+
+
 Home:
 
 <img src="https://github.com/eusouwilson/Info-COVID19-BR/blob/master/screenshots/home.png" alt="Home" height="800" width="370">
