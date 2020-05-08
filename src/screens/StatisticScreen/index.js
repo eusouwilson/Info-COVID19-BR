@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import SwitchButtom from '../../components/SwitchButtom';
 import CovidData from '../../components/CovidData';
-
 import { fetchData, fetchDataStates, fetchDataState } from '../../services/api';
+import moment from 'moment';
 
 import {
   Container,
@@ -14,6 +14,8 @@ import {
   Loading,
   FlatContainer,
   Buttom,
+  AvailableDate,
+  AvailableDateContainer,
 } from './styles.statistic';
 
 const StatisticScreen = () => {
@@ -47,7 +49,18 @@ const StatisticScreen = () => {
           <Header>
             <HeaderTitleContainer>
               <HeaderTitle>Estatística Covid-19</HeaderTitle>
+              <AvailableDateContainer>
+                <AvailableDate>Atualizado em:</AvailableDate>
+                <AvailableDate>
+                  {dataCoutry.updated_at
+                    ? moment.utc(dataCoutry.updated_at).format('DD MMM YYYY')
+                    : moment
+                        .utc(dataCoutry.last_available_date)
+                        .format('DD MMM YYYY')}
+                </AvailableDate>
+              </AvailableDateContainer>
             </HeaderTitleContainer>
+
             <SwitchButtom
               titleoff={dataCoutry.state ? dataCoutry.state : 'Geral'}
               titleon={'Brasil'}
@@ -95,29 +108,27 @@ const StatisticScreen = () => {
               />
             </BodyData>
           </Header>
-          <Body>
-            {!dataState ? (
-              <Loading />
-            ) : (
-              <FlatContainer
-                data={dataState.results}
-                keyExtractor={(item) => String(item.city_ibge_code)}
-                renderItem={({ item }) => (
-                  <Buttom
-                    onPress={() => handleFetchApiStateDetails(item.state)}
-                  >
-                    <CovidData
-                      color="#6C65AC"
-                      title={item.state}
-                      value={item.confirmed}
-                    />
-                  </Buttom>
-                )}
-              />
-            )}
-          </Body>
         </>
       )}
+      <Body>
+        {!dataState ? (
+          <Loading />
+        ) : (
+          <FlatContainer
+            data={dataState.results}
+            keyExtractor={(item) => String(item.city_ibge_code)}
+            renderItem={({ item }) => (
+              <Buttom onPress={() => handleFetchApiStateDetails(item.state)}>
+                <CovidData
+                  color="#6C65AC"
+                  title={item.state}
+                  value={item.confirmed}
+                />
+              </Buttom>
+            )}
+          />
+        )}
+      </Body>
     </Container>
   );
 };

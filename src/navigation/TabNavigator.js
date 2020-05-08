@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -23,10 +24,28 @@ const TabNavigator = () => (
   <Tab.Navigator
     initialRouteName={INITIAL_ROUTE_NAME}
     tabBarOptions={{
-      activeTintColor: colors.primaryColor,
-      inactiveTintColor: colors.secondaryColor,
+      activeTintColor: colors.tabIconSelected,
+      inactiveTintColor: colors.tabIconDefault,
       labelStyle: { fontSize: 12 },
-      style: { height: hp('11%') },
+      style: {
+        height: hp('11%'),
+        width: wp('96%'),
+        marginHorizontal: hp('1%'),
+        borderRadius: 20,
+        marginBottom: 15,
+        paddingVertical: hp('1%'),
+
+        backgroundColor: colors.defaultColor,
+      },
+
+      /* style: {
+        height: hp('8%'),
+        width: wp('96%'),
+        backgroundColor: colors.defaultColor,
+        marginBottom: 15,
+        marginHorizontal: hp('1%'),
+        marginTop: -10, //Platform.OS === 'ios' ? -20 : 10,
+      }, */
     }}
   >
     <Tab.Screen

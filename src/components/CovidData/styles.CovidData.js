@@ -28,5 +28,5 @@ export const DataValue = styled.Text`
 
 export const Loading = styled.ActivityIndicator.attrs({
   size: 'large',
-  color: '#0000ff',
+  color: '#fff',
 })``;

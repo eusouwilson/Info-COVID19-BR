@@ -11,7 +11,7 @@ export const Container = styled.View`
   background-color: #6c65ac;
   border-radius: 20px;
   flex-direction: row;
-  margin-bottom: ${hp('3%')};
+  margin-bottom: ${hp('3%')}px;
 `;
 
 export const Buttom = styled(RectButton)`

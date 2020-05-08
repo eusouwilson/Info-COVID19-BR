@@ -21,6 +21,9 @@ export const Header = styled.View`
 export const HeaderTitleContainer = styled.View`
   margin-top: ${hp('7%')}px;
   margin-bottom: ${hp('3%')}px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 export const HeaderTitle = styled.Text`
   font-size: ${hp('2.5%')}px;
@@ -52,4 +55,14 @@ export const Buttom = styled(RectButton)`
 export const FlatContainer = styled.FlatList.attrs({ horizontal: true })`
   padding: 0px 0 30px 0px;
   width: 100%;
+`;
+export const AvailableDate = styled.Text`
+  font-size: ${hp('1.2%')}px;
+  color: #fff;
+  font-weight: 300;
+`;
+
+export const AvailableDateContainer = styled.View`
+  justify-content: center;
+  align-items: flex-start;
 `;
