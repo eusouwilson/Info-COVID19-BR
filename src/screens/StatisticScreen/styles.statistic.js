@@ -31,6 +31,44 @@ export const HeaderTitle = styled.Text`
   font-weight: bold;
 `;
 
+export const CountryContainer = styled.View`
+  height: ${hp('6%')}px;
+  width: 100%;
+  background-color: #6c65ac;
+  border-radius: 20px;
+  flex-direction: row;
+  margin-bottom: ${hp('3%')}px;
+`;
+
+export const CountryButtom = styled(RectButton)`
+  height: ${hp('6%')}px;
+  width: ${wp('45%')}px;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: #6c65ac;
+`;
+export const CountryTitle = styled.Text`
+  font-size: ${hp('3%')}px;
+  font-weight: 600;
+  color: #fff;
+`;
+
+export const UfContainer = styled.View`
+  height: ${hp('6%')}px;
+  width: ${wp('45%')}px;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+`;
+
+export const UfTitle = styled.Text`
+  font-size: ${hp('3%')}px;
+  font-weight: 600;
+  color: #6c65ac;
+`;
+
 export const Body = styled.View`
   padding-left: 18px;
   padding-right: 18px;
@@ -40,6 +78,7 @@ export const BodyData = styled.View`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  z-index: -1;
 `;
 
 export const Loading = styled.ActivityIndicator.attrs({

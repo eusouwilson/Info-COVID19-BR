@@ -3,6 +3,7 @@ import SwitchButtom from '../../components/SwitchButtom';
 import CovidData from '../../components/CovidData';
 import { fetchData, fetchDataStates, fetchDataState } from '../../services/api';
 import moment from 'moment';
+import SelectButtom from '../../components/SelectButtom';
 
 import {
   Container,
@@ -14,6 +15,11 @@ import {
   Loading,
   FlatContainer,
   Buttom,
+  CountryContainer,
+  CountryButtom,
+  CountryTitle,
+  UfContainer,
+  UfTitle,
   AvailableDate,
   AvailableDateContainer,
 } from './styles.statistic';
@@ -21,6 +27,7 @@ import {
 const StatisticScreen = () => {
   const [dataCoutry, setdataCoutry] = useState([]);
   const [dataState, setdataState] = useState(null);
+  const [hideUF, sethideUF] = useState(null);
 
   useEffect(() => {
     handleFetchApi('brazil');
@@ -28,12 +35,14 @@ const StatisticScreen = () => {
   }, []);
 
   const handleFetchApi = async (country) => {
+    sethideUF('UF');
     setdataCoutry(await fetchData(country));
   };
 
   const handleFetchApiStateDetails = async (uf) => {
     const dataStateFiltered = await fetchDataState(uf);
     setdataCoutry(dataStateFiltered.results[0]);
+    sethideUF(null);
   };
 
   const handleFetchApiState = async () => {
@@ -61,11 +70,22 @@ const StatisticScreen = () => {
               </AvailableDateContainer>
             </HeaderTitleContainer>
 
-            <SwitchButtom
-              titleoff={dataCoutry.state ? dataCoutry.state : 'Geral'}
-              titleon={'Brasil'}
-              onpress={handleFetchApi}
-            />
+            <CountryContainer>
+              <CountryButtom onPress={() => handleFetchApi('brazil')}>
+                <CountryTitle>Brasil</CountryTitle>
+              </CountryButtom>
+              <UfContainer>
+                {!dataState ? (
+                  <Loading />
+                ) : (
+                  <SelectButtom
+                    data={dataState.results}
+                    action={handleFetchApiStateDetails}
+                    uf={hideUF}
+                  />
+                )}
+              </UfContainer>
+            </CountryContainer>
             <BodyData>
               <CovidData
                 color="#F6B258"

@@ -12,6 +12,8 @@ export const Container = styled.View`
   border-radius: 20px;
   flex-direction: row;
   margin-bottom: ${hp('3%')}px;
+  position: relative;
+  z-index: -1;
 `;
 
 export const Buttom = styled(RectButton)`
