@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import SwitchButtom from '../../components/SwitchButtom';
 import CovidData from '../../components/CovidData';
-import { fetchData, fetchDataStates, fetchDataState } from '../../services/api';
+import {
+  fetchData,
+  fetchDataStates,
+  fetchDataState,
+  fetchDataStateForDate,
+} from '../../services/api';
 import moment from 'moment';
+import ChartState from '../../components/ChartState';
 import SelectButtom from '../../components/SelectButtom';
-
 import {
   Container,
   Header,
@@ -13,13 +17,12 @@ import {
   HeaderTitleContainer,
   HeaderTitle,
   Loading,
-  FlatContainer,
-  Buttom,
+  MsgContainer,
+  MsgTitle,
   CountryContainer,
   CountryButtom,
   CountryTitle,
   UfContainer,
-  UfTitle,
   AvailableDate,
   AvailableDateContainer,
 } from './styles.statistic';
@@ -27,6 +30,7 @@ import {
 const StatisticScreen = () => {
   const [dataCoutry, setdataCoutry] = useState([]);
   const [dataState, setdataState] = useState(null);
+  const [dataStateForDate, setdataStateForDate] = useState(null);
   const [hideUF, sethideUF] = useState(null);
 
   useEffect(() => {
@@ -41,12 +45,16 @@ const StatisticScreen = () => {
 
   const handleFetchApiStateDetails = async (uf) => {
     const dataStateFiltered = await fetchDataState(uf);
+    setdataStateForDate(await fetchDataStateForDate(uf));
     setdataCoutry(dataStateFiltered.results[0]);
     sethideUF(null);
   };
 
   const handleFetchApiState = async () => {
     setdataState(await fetchDataStates());
+  };
+  const handleFetchApiStateForDate = async () => {
+    setdataStateForDate(await fetchDataStateForDate());
   };
 
   return (
@@ -130,23 +138,14 @@ const StatisticScreen = () => {
           </Header>
         </>
       )}
+
       <Body>
-        {!dataState ? (
-          <Loading />
+        {!hideUF && dataStateForDate ? (
+          <ChartState data={dataStateForDate.results} />
         ) : (
-          <FlatContainer
-            data={dataState.results}
-            keyExtractor={(item) => String(item.city_ibge_code)}
-            renderItem={({ item }) => (
-              <Buttom onPress={() => handleFetchApiStateDetails(item.state)}>
-                <CovidData
-                  color="#6C65AC"
-                  title={item.state}
-                  value={item.confirmed}
-                />
-              </Buttom>
-            )}
-          />
+          <MsgContainer>
+            <MsgTitle>Sem gráfico para o pais selecione uma UF</MsgTitle>
+          </MsgContainer>
         )}
       </Body>
     </Container>

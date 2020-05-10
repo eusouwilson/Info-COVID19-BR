@@ -36,3 +36,12 @@ export const fetchDataState = async (uf) => {
     return data;
   } catch (error) {}
 };
+
+export const fetchDataStateForDate = async (uf) => {
+  try {
+    const { data } = await axios.get(
+      `https://brasil.io/api/dataset/covid19/caso_full/data/?place_type=state&state=${uf}`
+    );
+    return data;
+  } catch (error) {}
+};

@@ -27,17 +27,16 @@ export const TitleText = styled.Text`
 export const SelectContainer = styled.View`
   width: ${wp('40%')}px;
   height: ${hp('20%')}px;
-  margin-top: ${hp('5%')}px;
+  margin-top: ${hp('65%')}px;
   padding-top: ${hp('2%')}px;
   border-bottom-left-radius: ${wp('3%')}px;
   border-bottom-right-radius: ${wp('3%')}px;
   background-color: #fff;
   justify-content: center;
   align-items: center;
-  position: absolute;
 `;
 export const BtnContainer = styled(RectButton)`
-  width: ${wp('39%')}px;
+  width: ${wp('35%')}px;
   height: ${hp('5%')}px;
   padding-top: ${hp('0.2%')}px;
   flex-direction: row;

@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
+
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -95,6 +96,19 @@ export const FlatContainer = styled.FlatList.attrs({ horizontal: true })`
   padding: 0px 0 30px 0px;
   width: 100%;
 `;
+export const MsgContainer = styled.View`
+  margin-top: 40px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+export const MsgTitle = styled.Text`
+  font-size: ${hp('4%')}px;
+  color: #ddd;
+  font-weight: 300;
+  text-align: center;
+`;
+
 export const AvailableDate = styled.Text`
   font-size: ${hp('1.2%')}px;
   color: #fff;

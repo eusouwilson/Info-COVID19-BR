@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Ionicons } from '@expo/vector-icons';
 
 import {
   Container,
@@ -35,8 +36,11 @@ const SelectButtom = ({ data, action, uf }) => {
   return (
     <Container>
       <TitleContainer onPress={() => setdisplayButtom(!displayButtom)}>
+        <TitleText>{ufSelected}</TitleText>
         {!flagSelected ? (
-          <></>
+          <>
+            <Ionicons name={'ios-arrow-down'} size={28} color={'#6c65ac'} />
+          </>
         ) : (
           <FlagUF
             source={{
@@ -44,7 +48,6 @@ const SelectButtom = ({ data, action, uf }) => {
             }}
           />
         )}
-        <TitleText>{ufSelected}</TitleText>
       </TitleContainer>
       {displayButtom ? (
         <></>
