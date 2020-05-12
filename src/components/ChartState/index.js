@@ -20,7 +20,7 @@ const ChartState = (data) => {
     <Container>
       <ChartTitle>Curva de Contágio</ChartTitle>
       <BarChart
-        style={{ height: hp('29%') }}
+        style={{ height: hp('24%') }}
         data={datachart.reverse()}
         svg={{ fill }}
         contentInset={{ top: 10, bottom: 32 }}

@@ -6,6 +6,7 @@ import {
   fetchDataState,
   fetchDataStateForDate,
 } from '../../services/api';
+import { MenuProvider } from 'react-native-popup-menu';
 import moment from 'moment';
 import ChartState from '../../components/ChartState';
 import SelectButtom from '../../components/SelectButtom';
@@ -63,79 +64,82 @@ const StatisticScreen = () => {
         <Loading />
       ) : (
         <>
-          <Header>
-            <HeaderTitleContainer>
-              <HeaderTitle>Estatística Covid-19</HeaderTitle>
-              <AvailableDateContainer>
-                <AvailableDate>Atualizado em:</AvailableDate>
-                <AvailableDate>
-                  {dataCoutry.updated_at
-                    ? moment.utc(dataCoutry.updated_at).format('DD MMM YYYY')
-                    : moment
-                        .utc(dataCoutry.last_available_date)
-                        .format('DD MMM YYYY')}
-                </AvailableDate>
-              </AvailableDateContainer>
-            </HeaderTitleContainer>
+          <MenuProvider>
+            <Header>
+              <HeaderTitleContainer>
+                <HeaderTitle>Estatística Covid-19</HeaderTitle>
+                <AvailableDateContainer>
+                  <AvailableDate>Atualizado em:</AvailableDate>
+                  <AvailableDate>
+                    {dataCoutry.updated_at
+                      ? moment.utc(dataCoutry.updated_at).format('DD MMM YYYY')
+                      : moment
+                          .utc(dataCoutry.last_available_date)
+                          .format('DD MMM YYYY')}
+                  </AvailableDate>
+                </AvailableDateContainer>
+              </HeaderTitleContainer>
 
-            <CountryContainer>
-              <CountryButtom onPress={() => handleFetchApi('brazil')}>
-                <CountryTitle>Brasil</CountryTitle>
-              </CountryButtom>
-              <UfContainer>
-                {!dataState ? (
-                  <Loading />
-                ) : (
-                  <SelectButtom
-                    data={dataState.results}
-                    action={handleFetchApiStateDetails}
-                    uf={hideUF}
-                  />
-                )}
-              </UfContainer>
-            </CountryContainer>
-            <BodyData>
-              <CovidData
-                color="#F6B258"
-                title={dataCoutry.confirmed ? 'Ativos' : 'Novos Confirmados'}
-                value={
-                  dataCoutry.confirmed
-                    ? dataCoutry.cases
-                    : dataCoutry.new_confirmed
-                }
-              />
-              <CovidData
-                color="#EE5657"
-                title="Confirmados"
-                value={
-                  dataCoutry.confirmed
-                    ? dataCoutry.confirmed
-                    : dataCoutry.last_available_confirmed
-                }
-              />
-            </BodyData>
-            <BodyData>
-              <CovidData
-                color="#9057F7"
-                title="Obitos"
-                value={
-                  dataCoutry.deaths
-                    ? dataCoutry.deaths
-                    : dataCoutry.last_available_deaths
-                }
-              />
-              <CovidData
-                color="#64D97C"
-                title={dataCoutry.recovered ? 'Curados' : 'Letalidade'}
-                value={
-                  dataCoutry.recovered
-                    ? dataCoutry.recovered
-                    : (dataCoutry.last_available_death_rate * 100).toFixed(2) +
-                      '%'
-                }
-              />
-            </BodyData>
-          </Header>
+              <CountryContainer>
+                <CountryButtom onPress={() => handleFetchApi('brazil')}>
+                  <CountryTitle>Brasil</CountryTitle>
+                </CountryButtom>
+                <UfContainer>
+                  {!dataState ? (
+                    <Loading />
+                  ) : (
+                    <SelectButtom
+                      data={dataState.results}
+                      action={handleFetchApiStateDetails}
+                      uf={hideUF}
+                    />
+                  )}
+                </UfContainer>
+              </CountryContainer>
+              <BodyData>
+                <CovidData
+                  color="#F6B258"
+                  title={dataCoutry.confirmed ? 'Ativos' : 'Novos Confirmados'}
+                  value={
+                    dataCoutry.confirmed
+                      ? dataCoutry.cases
+                      : dataCoutry.new_confirmed
+                  }
+                />
+                <CovidData
+                  color="#EE5657"
+                  title="Confirmados"
+                  value={
+                    dataCoutry.confirmed
+                      ? dataCoutry.confirmed
+                      : dataCoutry.last_available_confirmed
+                  }
+                />
+              </BodyData>
+              <BodyData>
+                <CovidData
+                  color="#9057F7"
+                  title="Obitos"
+                  value={
+                    dataCoutry.deaths
+                      ? dataCoutry.deaths
+                      : dataCoutry.last_available_deaths
+                  }
+                />
+                <CovidData
+                  color="#64D97C"
+                  title={dataCoutry.recovered ? 'Curados' : 'Letalidade'}
+                  value={
+                    dataCoutry.recovered
+                      ? dataCoutry.recovered
+                      : (dataCoutry.last_available_death_rate * 100).toFixed(
+                          2
+                        ) + '%'
+                  }
+                />
+              </BodyData>
+            </Header>
+          </MenuProvider>
         </>
       )}
 

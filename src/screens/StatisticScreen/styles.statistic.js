@@ -71,6 +71,8 @@ export const UfTitle = styled.Text`
 `;
 
 export const Body = styled.View`
+  height: ${hp('24%')}px;
+  width: ${wp('100%')}px;
   padding-left: 18px;
   padding-right: 18px;
 `;
@@ -79,7 +81,6 @@ export const BodyData = styled.View`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  z-index: -1;
 `;
 
 export const Loading = styled.ActivityIndicator.attrs({

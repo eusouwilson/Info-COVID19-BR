@@ -42,3 +42,10 @@ export const Content = styled.Text`
   line-height: 16px;
   letter-spacing: -0.28px;
 `;
+
+export const Body = styled.View`
+  width: 100%;
+  height: 100px;
+  background-color: #ddd;
+  align-items: center;
+`;
