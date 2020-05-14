@@ -93,9 +93,12 @@ export const Buttom = styled(RectButton)`
   justify-content: center;
 `;
 
-export const FlatContainer = styled.FlatList.attrs({ horizontal: true })`
-  padding: 0px 0 30px 0px;
-  width: 100%;
+export const ScrollContainer = styled.ScrollView.attrs({
+  horizontal: true,
+  decelerationRate: 0.999,
+  overScrollMode: 'never',
+})`
+  padding: 0px 0 0px 0px;
 `;
 export const MsgContainer = styled.View`
   margin-top: 40px;

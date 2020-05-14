@@ -26,6 +26,7 @@ import {
   UfContainer,
   AvailableDate,
   AvailableDateContainer,
+  ScrollContainer,
 } from './styles.statistic';
 
 const StatisticScreen = () => {
@@ -145,7 +146,25 @@ const StatisticScreen = () => {
 
       <Body>
         {!hideUF && dataStateForDate ? (
-          <ChartState data={dataStateForDate.results} />
+          <>
+            <ScrollContainer>
+              <ChartState
+                data={dataStateForDate.results}
+                title="Novos Casos"
+                type="novos"
+              />
+              <ChartState
+                data={dataStateForDate.results}
+                title="Casos acumulados"
+                type="acumulados"
+              />
+              <ChartState
+                data={dataStateForDate.results}
+                title="Obitos Acumulados "
+                type="obitos"
+              />
+            </ScrollContainer>
+          </>
         ) : (
           <MsgContainer>
             <MsgTitle>Sem gráfico para o pais selecione uma UF</MsgTitle>

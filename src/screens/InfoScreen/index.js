@@ -1,5 +1,4 @@
 import React from 'react';
-import SelectButtom from '../../components/SelectButtom';
 import {
   Container,
   ContainerTitle,
@@ -10,33 +9,6 @@ import {
 } from './styles.info';
 
 const InfoScreen = () => {
-  const result = [
-    {
-      state: 'MA',
-    },
-    {
-      state: 'PA',
-    },
-    {
-      state: 'MA',
-    },
-    {
-      state: 'PA',
-    },
-    {
-      state: 'MA',
-    },
-    {
-      state: 'PA',
-    },
-    {
-      state: 'MA',
-    },
-    {
-      state: 'PA',
-    },
-  ];
-
   return (
     <Container>
       <Header>
@@ -57,9 +29,6 @@ const InfoScreen = () => {
           <Content>Desenvolvido por José Wilson (@eusouwilson)</Content>
         </>
       </Header>
-      <Body>
-        <SelectButtom data={result} action="" uf=""></SelectButtom>
-      </Body>
     </Container>
   );
 };

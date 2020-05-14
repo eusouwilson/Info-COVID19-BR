@@ -6,26 +6,35 @@ import {
 } from 'react-native-responsive-screen';
 import { Container, ChartTitle } from './styles.ChartState';
 
-const ChartState = (data) => {
-  let datachart = [];
+const ChartState = ({ data, title, type }) => {
+  let dataNovos = [];
+  let dataObitos = [];
+  let dataAcumulados = [];
+
   const fill = 'rgb(134, 65, 244)';
 
-  const resultArray = Object.keys(data).map((index) => data[index]);
-
-  resultArray[0].map((x) => {
-    datachart.push(x.last_available_confirmed);
+  data.map((x) => {
+    dataNovos.push(x.new_confirmed);
+    dataObitos.push(x.last_available_deaths);
+    dataAcumulados.push(x.last_available_confirmed);
   });
 
   return (
     <Container>
-      <ChartTitle>Curva de Contágio</ChartTitle>
+      <ChartTitle>{title}</ChartTitle>
       <BarChart
-        style={{ height: hp('24%') }}
-        data={datachart.reverse()}
+        style={{ height: hp('24%'), width: wp('92%'), paddingHorizontal: 10 }}
+        data={
+          type === 'obitos'
+            ? dataObitos.reverse()
+            : type === 'novos'
+            ? dataNovos.reverse()
+            : dataAcumulados.reverse()
+        }
         svg={{ fill }}
         contentInset={{ top: 10, bottom: 32 }}
       >
-        <Grid />
+        <Grid style={{ height: hp('24%'), width: wp('100%') }} />
       </BarChart>
     </Container>
   );
